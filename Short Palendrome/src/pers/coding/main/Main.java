@@ -45,8 +45,9 @@ class Result {
 		final Double tenToTheNineth = Math.pow(10, 9) + 7;
 		// s = removeSingulars(s);
 		// Map<String, Integer> memoizer = hardCalculatePalendromes(s);
-		Map<String, Integer> memoizer = betterCalculatePalendromes(s);
-		return memoizer.values().stream().mapToInt(Integer::intValue).sum() % tenToTheNineth.intValue();
+		//Map<String, Integer> memoizer = betterCalculatePalendromes(s);
+		//return memoizer.values().stream().mapToInt(Integer::intValue).sum() % tenToTheNineth.intValue();
+		return finalCalc(s);
 	}
 
 	private static Map<String, Integer> betterCalculatePalendromes(String s) {
@@ -77,6 +78,31 @@ class Result {
 			}
 		}
 		return memoizer;
+	}
+
+	private static int finalCalc(String s) {
+		final int mod = 1000 * 1000 * 1000 + 7;
+		int[] arr1 = new int[26];
+		int[][] arr2 = new int[26][26];
+		int[] arr3 = new int[26];
+		int ans = 0;
+		int index;
+		for (int i = 0; i < s.length(); i++) {
+			index = s.charAt(i) - 'a';
+			ans += (arr3[index]);
+			ans %= mod;
+			for (int j = 0; j < 26; j++) {
+				arr3[j] += (arr2[j][index]);
+				arr3[j] %= mod;
+			}
+			for (int j = 0; j < 26; j++) {
+				arr2[j][index] += (arr1[j] % mod);
+				arr2[j][index] %= mod;
+			}
+			arr1[index]++;
+			arr1[index] %= mod;
+		}
+		return ans;
 	}
 
 	private static Map<String, Integer> hardCalculatePalendromes(String s) {
