@@ -1,7 +1,5 @@
 package pers.coding.main;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.Scanner;
 
 class Solution{
@@ -12,6 +10,7 @@ class Solution{
             String IP = in.next();
             System.out.println(IP.matches(new MyRegex().pattern));
         }
+        in.close();
 
     }
 }

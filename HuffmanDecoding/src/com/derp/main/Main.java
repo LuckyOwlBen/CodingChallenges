@@ -137,7 +137,7 @@ public class Main {
  
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-    
+        
         String test= input.next();
  
         // we will assume that all our characters will have
@@ -163,6 +163,6 @@ public class Main {
         //System.out.println(s);
         Decoding d = new Decoding();
         d.decode(s.toString(), tree);
-
+        input.close();
     }
 }
